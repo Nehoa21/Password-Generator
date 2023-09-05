@@ -43,28 +43,28 @@ var generatePassword = function() {
 
 
 
-  var incLowerCase = window.prompt("Do you want to add lowercase letters?");
+  var incLowerCase = window.confirm("Do you want to add lowercase letters?");
   if (incLowerCase == true) {
     window.alert("Include lowercase letters.")
   } else {
     window.alert("No lowercase letters.")
   }
 
-  var incUpperCase = window.prompt("Do you want to add uppercase letters?");
+  var incUpperCase = window.confirm("Do you want to add uppercase letters?");
   if (incUpperCase == true) {
     window.alert("Include uppercase letters.");
   } else {
-    window.alert("No upercase letters.");
+    window.alert("No uppercase letters.");
   }
 
-  var incSpecial = window.prompt("Do you want to add special characters?");
+  var incSpecial = window.confirm("Do you want to add special characters?");
   if (incSpecial == true) {
     window.alert("Include special characters.");
   } else {
     window.alert("No special characters.");
   }
 
-  var incNums = window.prompt("Do you want to add numbers?");
+  var incNums = window.confirm("Do you want to add numbers?");
   if (incNums == true) {
     window.alert("Include numbers.");
   } else {
