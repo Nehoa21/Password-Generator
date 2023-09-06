@@ -2,49 +2,30 @@
 
 //need a function called generate password
 
-
-
 var lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
 var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var specialChar = "~!@#$%^&*()_+-=[]\{}|;':,./<>?";
 var numbers = "1234567890";
 
-var randPassword = "";
-
-
-// var numStart = 1;
-// var numEnd = 127;
-// var numbers = [];
-// for (var i = numStart; i <= numEnd; i++) {
-//   numbers.push(i);
-// }
-
-// console.log(numbers);
-
-
-
+var randPassword = [];
 
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword)
 
 var generatePassword = function() {
-  var userStart = window.prompt("What length of password do you want? Min: 8 Max: 127");
-  if (!userStart) {
+ 
+  var passLength = window.prompt("What length of password do you want? Min: 8 Max: 127");
+
+  if (passLength >= 8 && passLength <= 127) {
+    window.alert("Password length will be " + passLength + " characters long.");
+  } else {
+    window.alert("Invalid amount, choose again.");
     return;
   }
-  
-  
-  var passLength = [];
-  for (var i = 8; i <= 127; i++) {
-    passLength.push(i);
-    
-  }
-  window.alert("Password length will be " + passLength[i]);
 
-
-
-  var incLowerCase = window.confirm("Do you want to add lowercase letters?");
+  var incLowerCase = window.confirm("Do you want to add lowercase letters? OK: yes, Cancel: no");
   if (incLowerCase == true) {
+    var lower = Math.floor(Math.random() * lowerCaseLetters.length);
     window.alert("Include lowercase letters.")
   } else {
     window.alert("No lowercase letters.")
@@ -52,6 +33,7 @@ var generatePassword = function() {
 
   var incUpperCase = window.confirm("Do you want to add uppercase letters?");
   if (incUpperCase == true) {
+    var upper = Math.floor(Math.random() * upperCaseLetters.length);
     window.alert("Include uppercase letters.");
   } else {
     window.alert("No uppercase letters.");
@@ -59,6 +41,7 @@ var generatePassword = function() {
 
   var incSpecial = window.confirm("Do you want to add special characters?");
   if (incSpecial == true) {
+    var spec = Math.floor(Math.random() * specialChar.length);
     window.alert("Include special characters.");
   } else {
     window.alert("No special characters.");
@@ -66,28 +49,16 @@ var generatePassword = function() {
 
   var incNums = window.confirm("Do you want to add numbers?");
   if (incNums == true) {
+    var nums = Math.floor(Math.random() * numbers.length);
     window.alert("Include numbers.");
   } else {
     window.alert("No numbers.");
   }
 
-
-
-
-  // if(passLength === i) {
-  
-  // } else {
-  //   window.alert("Invalid");
-  // }
-
-  
+  window.alert(randPassword.push(lower, upper, spec, nums, passLength));
 }
 
-
-
-
-
-
+  
 
 // Assignment Code
 // var generateBtn = document.querySelector("#generate");
