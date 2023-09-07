@@ -7,7 +7,7 @@ var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var specialChar = "~!@#$%^&*()_+-=[]\{}|;':,./<>?";
 var numbers = "1234567890";
 
-var randPassword = [];
+
 
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword)
@@ -15,7 +15,6 @@ generateBtn.addEventListener("click", writePassword)
 var generatePassword = function() {
  
   var passLength = window.prompt("What length of password do you want? Min: 8 Max: 127");
-
   if (passLength >= 8 && passLength <= 127) {
     window.alert("Password length will be " + passLength + " characters long.");
   } else {
@@ -25,7 +24,7 @@ var generatePassword = function() {
 
   var incLowerCase = window.confirm("Do you want to add lowercase letters? OK: yes, Cancel: no");
   if (incLowerCase == true) {
-    var lower = Math.floor(Math.random() * lowerCaseLetters.length);
+    // var lower = Math.floor(Math.random() * lowerCaseLetters.length);
     window.alert("Include lowercase letters.")
   } else {
     window.alert("No lowercase letters.")
@@ -33,7 +32,7 @@ var generatePassword = function() {
 
   var incUpperCase = window.confirm("Do you want to add uppercase letters?");
   if (incUpperCase == true) {
-    var upper = Math.floor(Math.random() * upperCaseLetters.length);
+    // var upper = Math.floor(Math.random() * upperCaseLetters.length);
     window.alert("Include uppercase letters.");
   } else {
     window.alert("No uppercase letters.");
@@ -41,7 +40,7 @@ var generatePassword = function() {
 
   var incSpecial = window.confirm("Do you want to add special characters?");
   if (incSpecial == true) {
-    var spec = Math.floor(Math.random() * specialChar.length);
+    // var spec = Math.floor(Math.random() * specialChar.length);
     window.alert("Include special characters.");
   } else {
     window.alert("No special characters.");
@@ -49,15 +48,33 @@ var generatePassword = function() {
 
   var incNums = window.confirm("Do you want to add numbers?");
   if (incNums == true) {
-    var nums = Math.floor(Math.random() * numbers.length);
+    // var nums = Math.floor(Math.random() * numbers.length);
     window.alert("Include numbers.");
   } else {
     window.alert("No numbers.");
   }
 
-  window.alert(randPassword.push(lower, upper, spec, nums, passLength));
+  window.alert(combineArrays.randPassword);
 }
 
+
+function combineArrays(lowerCaseLetters, upperCaseLetters, specialChar, numbers, passLength){
+  var randPassword = [];
+  for (var i = 0; i < passLength; i++){
+    var lowerIndex = Math.floor(Math.random() * lowerCaseLetters.length);
+    var upperIndex = Math.floor(Math.random() * upperCaseLetters.length);
+    var specIndex = Math.floor(Math.random() * specialChar.length);
+    var numIndex = Math.floor(Math.random() * numbers.length);
+
+    generatePassword.lower = lowerCaseLetters[lowerIndex];
+    generatePassword.upper = upperCaseLetters[upperIndex];
+    generatePassword.spec = specialChar[specIndex];
+    generatePassword.nums = numbers[numIndex];
+
+    randPassword.push(generatePassword.lower, generatePassword.upper, generatePassword.spec, generatePassword.nums);
+  }
+  return randPassword;
+}
   
 
 // Assignment Code
