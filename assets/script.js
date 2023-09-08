@@ -13,61 +13,90 @@ var upperCaseLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N",
 var specialChar = ["~","!","@","#","$","%","^","&","*","(",")","_","+","-","=","[","]","|",";","'",":",",",".","/","<",">","?"];
 var numbers = ["1","2","3","4","5","6","7","8","9","0"];
 var randPassword = [];
-
-var generateBtn = document.querySelector("#generate");
-generateBtn.addEventListener("click", writePassword)
+var userChoices = [];
 
 //return booleans for window prompts, then make 'if' for them to include in get random function
 
+var prompts = function (){
+  var passLength = window.prompt("What length of password do you want? Min: 8 Max: 127");
+  if (passLength >= 8 && passLength <= 127) {
+    window.alert("Password length will be " + passLength + " characters long.");
+  } else {
+    window.alert("Invalid amount, choose again.");
+    return;
+  }
 
-var passLength = window.prompt("What length of password do you want? Min: 8 Max: 127");
-if (passLength >= 8 && passLength <= 127) {
-  window.alert("Password length will be " + passLength + " characters long.");
-} else {
-  window.alert("Invalid amount, choose again.");
-  return;
+  var incLowerCase = window.confirm("Do you want to add lowercase letters? OK: yes, Cancel: no");
+  if (incLowerCase === true) {
+    window.alert("Include lowercase letters.")
+  } else {
+    window.alert("No lowercase letters.")
+  }
+
+  var incUpperCase = window.confirm("Do you want to add uppercase letters?");
+  if (incUpperCase === true) {
+    window.alert("Include uppercase letters.");
+  } else {
+    window.alert("No uppercase letters.");
+  }
+
+  var incSpecial = window.confirm("Do you want to add special characters?");
+  if (incSpecial === true) {
+    window.alert("Include special characters.");
+  } else {
+    window.alert("No special characters.");
+  }
+
+  var incNums = window.confirm("Do you want to add numbers?");
+  if (incNums === true) {
+    window.alert("Include numbers.");
+  } else {
+    window.alert("No numbers.");
+  }
 }
 
-var incLowerCase = window.confirm("Do you want to add lowercase letters? OK: yes, Cancel: no");
-if (incLowerCase === true) {
-  window.alert("Include lowercase letters.")
-} else {
-  window.alert("No lowercase letters.")
+var userChoiceTypes = function() {
+  if (incLowerCase || incUpperCase || incSpecial || incNums) {
+    userChoices.push;
+  }  
 }
-
-var incUpperCase = window.confirm("Do you want to add uppercase letters?");
-if (incUpperCase === true) {
-  window.alert("Include uppercase letters.");
-} else {
-  window.alert("No uppercase letters.");
-}
-
-var incSpecial = window.confirm("Do you want to add special characters?");
-if (incSpecial === true) {
-  window.alert("Include special characters.");
-} else {
-  window.alert("No special characters.");
-}
-
-var incNums = window.confirm("Do you want to add numbers?");
-if (incNums === true) {
-  window.alert("Include numbers.");
-} else {
-  window.alert("No numbers.");
-}
-
-  
-
-
-var generatePassword = function() {
-  
-  
-}
-
 
 var randChar = function(){
+  var randIndex = math.floor(math.random() * userChoices.length);
+  var randInts = userChoices[randIndex];
+
+  return randInts;
+}
+
+var generatePassword = function() {
+  prompts();
+  var choices = userChoiceTypes();
+  var potentChoices = [];
+  var finalPicks = [];
   
-  
+  if (choices.incLowerCase) {
+    potentChoices = potentChoices.concat(lowerCaseLetters);
+    finalPicks.push(randChar(lowerCaseLetters))
+  }
+
+  if (choices.incUpperCase) {
+    potentChoices = potentChoices.concat(upperCaseLetters);
+    finalPicks.push(randChar(upperCaseLetters))
+  }
+
+  if (choices.incSpecial) {
+    potentChoices = potentChoices.concat(specialChar);
+    finalPicks.push(randChar(specialChar))
+  }
+
+  if (choices.incNums) {
+    potentChoices = potentChoices.concat(numbers);
+    finalPicks.push(randChar(numbers))
+  }
+
+
+  console.log()
+  return finalPicks;
 }
   
 
