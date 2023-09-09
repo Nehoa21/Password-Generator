@@ -12,12 +12,10 @@ var lowerCaseLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n",
 var upperCaseLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var specialChar = ["~","!","@","#","$","%","^","&","*","(",")","_","+","-","=","[","]","|",";","'",":",",",".","/","<",">","?"];
 var numbers = ["1","2","3","4","5","6","7","8","9","0"];
-var randPassword = [];
-var userChoices = [];
 
 //return booleans for window prompts, then make 'if' for them to include in get random function
 
-var prompts = function (){
+var windPrompts = function (){
   var passLength = window.prompt("What length of password do you want? Min: 8 Max: 127");
   if (passLength >= 8 && passLength <= 127) {
     window.alert("Password length will be " + passLength + " characters long.");
@@ -56,44 +54,44 @@ var prompts = function (){
 }
 
 var userChoiceTypes = function() {
-  if (incLowerCase || incUpperCase || incSpecial || incNums) {
+  var userChoices = [];
+  if (windPrompts.incLowerCase || windPrompts.incUpperCase || windPrompts.incSpecial || windPrompts.incNums) {
     userChoices.push;
   }  
 }
 
 var randChar = function(){
-  var randIndex = math.floor(math.random() * userChoices.length);
+  var randIndex = math.floor(math.random() * passLength.length);
   var randInts = userChoices[randIndex];
 
   return randInts;
 }
 
 var generatePassword = function() {
-  prompts();
+  windPrompts();
   var choices = userChoiceTypes();
   var potentChoices = [];
   var finalPicks = [];
   
-  if (choices.incLowerCase) {
+  if (choices.windPrompts(incLowerCase)) {
     potentChoices = potentChoices.concat(lowerCaseLetters);
     finalPicks.push(randChar(lowerCaseLetters))
   }
 
-  if (choices.incUpperCase) {
+  if (choices.windPrompts(incUpperCase)) {
     potentChoices = potentChoices.concat(upperCaseLetters);
     finalPicks.push(randChar(upperCaseLetters))
   }
 
-  if (choices.incSpecial) {
+  if (choices.windPrompts(incSpecial)) {
     potentChoices = potentChoices.concat(specialChar);
     finalPicks.push(randChar(specialChar))
   }
 
-  if (choices.incNums) {
+  if (choices.windPrompts(incNums)) {
     potentChoices = potentChoices.concat(numbers);
     finalPicks.push(randChar(numbers))
   }
-
 
   console.log()
   return finalPicks;
