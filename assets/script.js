@@ -1,20 +1,15 @@
 //create variables that hold arrays of different types of characters
-
 //need a function called generate password
-
 //need a function to get random integers
-
 //2 empty arrays to store the random integers
 
-
-//make these arrays
+//Arrays for characters to include in password
 var lowerCaseLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var upperCaseLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var specialChar = ["~","!","@","#","$","%","^","&","*","(",")","_","+","-","=","[","]","|",";","'",":",",",".","/","<",">","?"];
 var numbers = ["1","2","3","4","5","6","7","8","9","0"];
 
-//return booleans for window prompts, then make 'if' for them to include in get random function
-
+//function for the window prompts
 var windPrompts = function (){
   var passLength = window.prompt("What length of password do you want? Min: 8 Max: 127");
   if (passLength >= 8 && passLength <= 127) {
@@ -53,6 +48,7 @@ var windPrompts = function (){
   }
 }
 
+//return booleans for window prompts, then make 'if' for them to include in get random function
 var userChoiceTypes = function() {
   var userChoices = [];
   if (windPrompts.incLowerCase || windPrompts.incUpperCase || windPrompts.incSpecial || windPrompts.incNums) {
@@ -61,34 +57,38 @@ var userChoiceTypes = function() {
 }
 
 var randChar = function(){
-  var randIndex = math.floor(math.random() * passLength.length);
-  var randInts = userChoices[randIndex];
+  var randIndex = [];
+  var randInts = [];
+  randIndex = math.floor(math.random() * passLength.length);
+  randInts = userChoices[randIndex];
 
   return randInts;
 }
 
+//function to start the password generator, from start to finish
 var generatePassword = function() {
   windPrompts();
   var choices = userChoiceTypes();
   var potentChoices = [];
   var finalPicks = [];
   
-  if (choices.windPrompts(incLowerCase)) {
+  //error with making the array
+  if (choices.incLowerCase) {
     potentChoices = potentChoices.concat(lowerCaseLetters);
     finalPicks.push(randChar(lowerCaseLetters))
   }
 
-  if (choices.windPrompts(incUpperCase)) {
+  if (choices.userChoiceTypes(incUpperCase)) {
     potentChoices = potentChoices.concat(upperCaseLetters);
     finalPicks.push(randChar(upperCaseLetters))
   }
 
-  if (choices.windPrompts(incSpecial)) {
+  if (choices.userChoiceTypes(incSpecial)) {
     potentChoices = potentChoices.concat(specialChar);
     finalPicks.push(randChar(specialChar))
   }
 
-  if (choices.windPrompts(incNums)) {
+  if (choices.userChoiceTypes(incNums)) {
     potentChoices = potentChoices.concat(numbers);
     finalPicks.push(randChar(numbers))
   }
